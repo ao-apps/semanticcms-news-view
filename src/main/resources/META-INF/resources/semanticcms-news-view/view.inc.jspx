@@ -22,7 +22,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <!--
-TODO: Only the parts of the page that are specifically on this page are indexed (hopefully):
+Only the parts of the page that are specifically on this page are indexed (hopefully):
 See googleon and googleoff tags:
 	https://perishablepress.com/tell-google-to-not-index-certain-parts-of-your-page/ 
 And the Google documentation:
@@ -31,6 +31,7 @@ And the Google documentation:
 <jsp:root
 	xmlns:ao="http://aoindustries.com/ao-taglib"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:joda="http://www.joda.org/joda/time/tags"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:news="https://semanticcms.com/semanticcms-news-taglib"
 	xmlns:p="https://semanticcms.com/semanticcms-core-taglib"
@@ -49,12 +50,12 @@ And the Google documentation:
 </jsp:text>
 		</c:if>
 		<article>
-			<h2><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}"><ao:out value="${news.title}" /></p:link></h2>
+			<h2 class="semanticcms-news-view-title"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
+			<div class="semanticcms-news-view-pubdate"><joda:format value="${news.pubDate}" style="L-" /></div>
 			<c:if test="${!empty news.description}">
-				<p><ao:out value="${news.description}" /></p>
+				<p class="semanticcms-news-view-description"><ao:out value="${news.description}" /></p>
 			</c:if>
-			TODO: pubDate
-			TODO: body
+			TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?  Is this crazy-talk Luke?  Can't nobody eat no fifty eggs.
 		</article>
 		<c:if test="${!news.page.equals(page)}">
 <jsp:text><!-- Newline required before googleon -->

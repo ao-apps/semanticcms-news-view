@@ -85,6 +85,11 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
 			<groupId>com.aoindustries</groupId>
 			<artifactId>ao-taglib</artifactId>
 			<version>1.4-SNAPSHOT</version>
