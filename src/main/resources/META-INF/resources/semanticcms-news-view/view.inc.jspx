@@ -31,6 +31,7 @@ And the Google documentation:
 <jsp:root
 	xmlns:ao="http://aoindustries.com/ao-taglib"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:joda="http://www.joda.org/joda/time/tags"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:news="https://semanticcms.com/semanticcms-news-taglib"
@@ -51,7 +52,7 @@ And the Google documentation:
 		</c:if>
 		<article>
 			<h2 class="semanticcms-news-view-title"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
-			<div class="semanticcms-news-view-pubdate"><joda:format value="${news.pubDate}" style="L-" /></div>
+			<div class="semanticcms-news-view-pubdate"><time pubdate="pubdate" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></div>
 			<c:if test="${!empty news.description}">
 				<p class="semanticcms-news-view-description"><ao:out value="${news.description}" /></p>
 			</c:if>
