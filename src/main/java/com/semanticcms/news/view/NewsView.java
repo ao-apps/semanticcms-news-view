@@ -39,7 +39,7 @@ public class NewsView extends View {
 
 	static final String VIEW_NAME = "news";
 
-	private static final String JSPX_TARGET = "/semanticcms-news-view/view.inc.jspx";
+	private static final String JSPX_TARGET = "/semanticcms-news-view/view.inc.jsp";
 
 	@Override
 	public Group getGroup() {
