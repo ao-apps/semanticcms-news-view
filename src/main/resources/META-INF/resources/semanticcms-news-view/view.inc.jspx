@@ -45,18 +45,39 @@ And the Google documentation:
 
 	<h1>What's New in <ao:out value="${page.title}" /></h1>
 	<c:forEach var="news" items="${news:findAllNews(page)}">
+		<!-- Capture news now in "body" mode, since findAllNews only did meta for fast search -->
+		<!-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
+		     This recapturing is clunky and full body capture of all would be inefficient. -->
+		<c:set var="news" value="${p:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
 		<c:if test="${!news.page.equals(page)}">
 <jsp:text><!-- Newline required before googleon, doing on googleoff just to be clear and safe -->
 &lt;!--googleoff: all--&gt;
 </jsp:text>
 		</c:if>
-		<article>
-			<h2 class="semanticcms-news-view-title"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
-			<div class="semanticcms-news-view-pubdate"><time pubdate="pubdate" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></div>
-			<c:if test="${!empty news.description}">
-				<p class="semanticcms-news-view-description"><ao:out value="${news.description}" /></p>
-			</c:if>
-			TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?  Is this crazy-talk Luke?  Can't nobody eat no fifty eggs.
+		<!-- See http://stackoverflow.com/questions/16101472/attribute-pubdate-not-allowed-on-element-time-at-this-point -->
+		<article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+			<h2 itemprop="headline"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
+			<!-- both description and body, use details/summary - maybe do in future when has better browser support
+			<c:choose>
+				<c:when test="${!empty news.description and news.body.length gt 0}">
+					<details>
+						<summary itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></summary>
+						<div itemprop="articleBody" class="semanticcms-news-view-body"><p:writeNodeBody node="${news}" /></div>
+					</details>
+				</c:when>
+				<c:otherwise>
+			-->
+					<c:if test="${!empty news.description}">
+						<div itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></div>
+					</c:if>
+					<c:if test="${news.body.length gt 0}">
+						<div itemprop="articleBody" class="semanticcms-news-view-body"><p:writeNodeBody node="${news}" /></div>
+					</c:if>
+			<!--
+				</c:otherwise>
+			</c:choose>
+			-->
+			<footer>Published <time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time>.</footer>
 		</article>
 		<c:if test="${!news.page.equals(page)}">
 <jsp:text><!-- Newline required before googleon -->
