@@ -32,6 +32,8 @@ And the Google documentation:
 	xmlns:ao="http://aoindustries.com/ao-taglib"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:news="https://semanticcms.com/semanticcms-news-taglib"
+	xmlns:p="https://semanticcms.com/semanticcms-core-taglib"
 	version="2.1"
 >
 	<jsp:directive.page language="java" buffer="512kb" autoFlush="true" pageEncoding="UTF-8" session="false" />
@@ -40,7 +42,24 @@ And the Google documentation:
 	<c:set var="pageRef" value="${page.pageRef}" />
 
 	<h1>What's New in <ao:out value="${page.title}" /></h1>
-	<p>
-		TODO
-	</p>
+	<c:forEach var="news" items="${news:findAllNews(page)}">
+		<c:if test="${!news.page.equals(page)}">
+<jsp:text><!-- Newline required before googleon, doing on googleoff just to be clear and safe -->
+&lt;!--googleoff: all--&gt;
+</jsp:text>
+		</c:if>
+		<article>
+			<h2><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}"><ao:out value="${news.title}" /></p:link></h2>
+			<c:if test="${!empty news.description}">
+				<p><ao:out value="${news.description}" /></p>
+			</c:if>
+			TODO: pubDate
+			TODO: body
+		</article>
+		<c:if test="${!news.page.equals(page)}">
+<jsp:text><!-- Newline required before googleon -->
+&lt;!--googleon: all--&gt;
+</jsp:text>
+		</c:if>
+	</c:forEach>
 </jsp:root>
