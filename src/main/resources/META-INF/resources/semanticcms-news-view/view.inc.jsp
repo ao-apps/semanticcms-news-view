@@ -34,11 +34,23 @@ See googleon and googleoff tags:
 	https://perishablepress.com/tell-google-to-not-index-certain-parts-of-your-page/ 
 And the Google documentation:
 	https://www.google.com/support/enterprise/static/gsa/docs/admin/70/gsa_doc_set/admin_crawl/preparing.html#1076243
+
+Arguments:
+	arg.view            The active view
+	arg.page            The page this is showing news for
+	arg.isRssEnabled    boolean whether RSS module enabled
+	arg.rssServletPath  The context-relative path to the RSS feed, only provided when RSS module enabled
+	arg.rssType         The content type of the RSS feed, only provided when RSS module enabled
 --%>
 <c:set var="page" value="${arg.page}" />
 <c:set var="pageRef" value="${page.pageRef}" />
 
 <h1>What's New in <ao:out value="${page.title}" /></h1>
+<c:if test="${arg.isRssEnabled}">
+	<div class="semanticcms-news-view-rss-link">
+		<ao:a href="${arg.rssServletPath}" addLastModified="false" type="${arg.rssType}"><span>Subscribe</span></ao:a>
+	</div>
+</c:if>
 <c:forEach var="news" items="${news:findAllNews(page)}">
 	<%-- Capture news now in "body" mode, since findAllNews only did meta for fast search --%>
 	<%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
@@ -50,6 +62,7 @@ And the Google documentation:
 	</c:if>
 	<%-- See http://stackoverflow.com/questions/16101472/attribute-pubdate-not-allowed-on-element-time-at-this-point --%>
 	<article
+		class="semanticcms-news-view-article"
 		itemscope="itemscope"
 		itemtype="http://schema.org/BlogPosting"
 		<%-- Include id for new elements on this page only, since only news on this page will be referenced externally and
@@ -60,6 +73,7 @@ And the Google documentation:
 		</c:if>
 	>
 		<h2 itemprop="headline"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
+		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></footer>
 		<%-- both description and body, use details/summary - maybe do in future when has better browser support
 		<c:choose>
 			<c:when test="${!empty news.description && news.body.length > 0}">
@@ -71,7 +85,7 @@ And the Google documentation:
 			<c:otherwise>
 		--%>
 				<c:if test="${!empty news.description}">
-					<div itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></div>
+					<div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
 				</c:if>
 				<c:if test="${news.body.length > 0}">
 					<div itemprop="articleBody" class="semanticcms-news-view-body"><p:writeNodeBody node="${news}" /></div>
@@ -80,7 +94,6 @@ And the Google documentation:
 			</c:otherwise>
 		</c:choose>
 		--%>
-		<footer>Published <time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time>.</footer>
 	</article>
 	<c:if test="${!news.page.equals(page)}">
 <%-- Newline required before googleon --%>

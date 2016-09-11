@@ -23,12 +23,18 @@
 package com.semanticcms.news.view;
 
 import com.aoindustries.servlet.http.Dispatcher;
+import com.aoindustries.servlet.http.LastModifiedServlet;
+import com.aoindustries.taglib.Link;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.servlet.PageUtils;
 import com.semanticcms.core.servlet.View;
 import com.semanticcms.news.model.News;
+import com.semanticcms.news.servlet.RssUtils;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +43,7 @@ import javax.servlet.jsp.SkipPageException;
 
 public class NewsView extends View {
 
-	static final String VIEW_NAME = "news";
+	public static final String VIEW_NAME = "news";
 
 	private static final String JSPX_TARGET = "/semanticcms-news-view/view.inc.jsp";
 
@@ -76,14 +82,48 @@ public class NewsView extends View {
 		return "What's New" + TITLE_SEPARATOR + page.getPageRef().getBook().getTitle();
 	}
 
+	/**
+	 * Description required by RSS channel.
+	 */
 	@Override
 	public String getDescription(Page page) {
-		return null;
+		return "What's New in " + page.getTitle();
 	}
 
 	@Override
 	public String getKeywords(Page page) {
 		return null;
+	}
+
+	@Override
+	public Collection<Link> getLinks(
+		ServletContext servletContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		Page page
+	) throws ServletException, IOException {
+		if(
+			// RSS module must be loaded
+			RssUtils.isRssEnabled(servletContext)
+			// Only link to RSS when this view applies (has news on self or child page)
+			&& isApplicable(servletContext, request, response, page)
+		) {
+			return Collections.singleton(
+				new Link(
+					RssUtils.getRssServletPath(page), // href
+					false, // hrefAbsolute
+					null, // params
+					LastModifiedServlet.AddLastModifiedWhen.FALSE,
+					null, // hreflang
+					"alternate", // rel
+					RssUtils.CONTENT_TYPE,
+					null, // media
+					getTitle(servletContext, request, response, page)
+				)
+			);
+		} else {
+			return super.getLinks(servletContext, request, response, page);
+		}
 	}
 
 	/**
@@ -113,12 +153,21 @@ public class NewsView extends View {
 
 	@Override
 	public void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, Page page) throws ServletException, IOException, SkipPageException {
+		Map<String,Object> args = new LinkedHashMap<String,Object>();
+		args.put("page", page);
+		boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
+		args.put("isRssEnabled", isRssEnabled);
+		if(isRssEnabled) {
+			args.put("rssServletPath", RssUtils.getRssServletPath(page));
+			//args.put("rssTitle", getTitle(servletContext, request, response, page));
+			args.put("rssType", RssUtils.CONTENT_TYPE);
+		}
 		Dispatcher.include(
 			servletContext,
 			JSPX_TARGET,
 			request,
 			response,
-			Collections.singletonMap("page", page)
+			args
 		);
 	}
 }
