@@ -23,10 +23,10 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses/>.
 <%@ page language="java" buffer="512kb" autoFlush="true" pageEncoding="UTF-8" session="false" %>
 <%@ taglib prefix="ao" uri="http://aoindustries.com/ao-taglib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="core" uri="https://semanticcms.com/core/taglib/" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
-<%@ taglib prefix="news" uri="https://semanticcms.com/semanticcms-news-taglib" %>
-<%@ taglib prefix="p" uri="https://semanticcms.com/semanticcms-core-taglib" %>
+<%@ taglib prefix="news" uri="https://semanticcms.com/news/taglib/" %>
 
 <%--
 Only the parts of the page that are specifically on this page are indexed (hopefully):
@@ -55,7 +55,7 @@ Arguments:
 	<%-- Capture news now in "body" mode, since findAllNews only did meta for fast search --%>
 	<%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
 		 This recapturing is clunky and full body capture of all would be inefficient. --%>
-	<c:set var="news" value="${p:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
+	<c:set var="news" value="${core:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
 	<c:if test="${!news.page.equals(page)}">
 <%-- Newline required before googleon, doing on googleoff just to be clear and safe --%>
 <!--googleoff: all-->
@@ -72,14 +72,14 @@ Arguments:
 			id="${fn:escapeXml(news.id)}"
 		</c:if>
 	>
-		<h2 itemprop="headline"><p:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></p:link></h2>
+		<h2 itemprop="headline"><core:link book="${news.book}" page="${news.targetPage}" element="${news.element}" view="${news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
 		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></footer>
 		<%-- both description and body, use details/summary - maybe do in future when has better browser support
 		<c:choose>
 			<c:when test="${!empty news.description && news.body.length > 0}">
 				<details>
 					<summary itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></summary>
-					<div itemprop="articleBody" class="semanticcms-news-view-body"><p:writeNodeBody node="${news}" /></div>
+					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="${news}" /></div>
 				</details>
 			</c:when>
 			<c:otherwise>
@@ -88,7 +88,7 @@ Arguments:
 					<div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
 				</c:if>
 				<c:if test="${news.body.length > 0}">
-					<div itemprop="articleBody" class="semanticcms-news-view-body"><p:writeNodeBody node="${news}" /></div>
+					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="${news}" /></div>
 				</c:if>
 		<%--
 			</c:otherwise>
