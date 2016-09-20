@@ -51,7 +51,7 @@ Arguments:
 		<ao:a href="${arg.rssServletPath}" addLastModified="false" type="${arg.rssType}"><span>Subscribe</span></ao:a>
 	</div>
 </c:if>
-<c:forEach var="news" items="${news:findAllNews(pageRef)}">
+<c:forEach var="news" items="${news:findAllNews(page)}">
 	<%-- Capture news now in "body" mode, since findAllNews only did meta for fast search --%>
 	<%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
 		 This recapturing is clunky and full body capture of all would be inefficient. --%>
