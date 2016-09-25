@@ -75,14 +75,14 @@ Arguments:
 		<h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
 		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></footer>
 		<%-- both description and body, use details/summary - maybe do in future when has better browser support
-		<c:choose>
-			<c:when test="${!empty news.description && news.body.length > 0}">
+		<ao:choose>
+			<ao:when test="#{!empty news.description && news.body.length > 0}">
 				<details>
 					<summary itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></summary>
 					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
 				</details>
-			</c:when>
-			<c:otherwise>
+			</ao:when>
+			<ao:otherwise>
 		--%>
 				<c:if test="${!empty news.description}">
 					<div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
@@ -91,8 +91,8 @@ Arguments:
 					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
 				</c:if>
 		<%--
-			</c:otherwise>
-		</c:choose>
+			</ao:otherwise>
+		</ao:choose>
 		--%>
 	</article>
 	<c:if test="${!news.page.equals(page)}">
