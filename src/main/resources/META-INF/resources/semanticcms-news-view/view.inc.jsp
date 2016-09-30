@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses/>.
 --%>
-<%@ page language="java" buffer="512kb" autoFlush="true" pageEncoding="UTF-8" session="false" %>
+<%@ page language="java" pageEncoding="UTF-8" session="false" %>
 <%@ taglib prefix="ao" uri="http://aoindustries.com/ao-taglib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="core" uri="https://semanticcms.com/core/taglib/" %>
