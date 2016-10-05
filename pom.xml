@@ -62,9 +62,11 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 									<link>http://www.joda.org/joda-time-jsptags/apidocs/index.html</link>
 									<link>https://www.aoindustries.com/docs/ao-taglib/</link>
 									<link>https://www.aoindustries.com/docs/aocode-public/</link>
+									<link>https://semanticcms.com/core/model/apidocs/</link>
 									<link>https://semanticcms.com/core/servlet/apidocs/</link>
 									<link>https://semanticcms.com/core/taglib/apidocs/</link>
 									<link>https://semanticcms.com/news/model/apidocs/</link>
+									<link>https://semanticcms.com/news/servlet/apidocs/</link>
 									<link>https://semanticcms.com/news/taglib/apidocs/</link>
 								</links>
 							</configuration>
