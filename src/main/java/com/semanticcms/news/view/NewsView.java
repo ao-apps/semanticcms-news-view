@@ -79,7 +79,12 @@ public class NewsView extends View {
 		HttpServletResponse response,
 		Page page
 	) {
-		return "What's New" + TITLE_SEPARATOR + page.getTitle();
+		String bookTitle = page.getPageRef().getBook().getTitle();
+		if(bookTitle != null && !bookTitle.isEmpty()) {
+			return "What's New" + TITLE_SEPARATOR + page.getTitle() + TITLE_SEPARATOR + bookTitle;
+		} else {
+			return "What's New" + TITLE_SEPARATOR + page.getTitle();
+		}
 	}
 
 	/**
