@@ -29,17 +29,20 @@ import com.semanticcms.core.model.Page;
 import com.semanticcms.core.servlet.PageUtils;
 import com.semanticcms.core.servlet.View;
 import com.semanticcms.news.model.News;
+import com.semanticcms.news.servlet.NewsUtils;
 import com.semanticcms.news.servlet.RssUtils;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
+import org.joda.time.ReadableInstant;
 
 public class NewsView extends View {
 
@@ -70,6 +73,20 @@ public class NewsView extends View {
 		Page page
 	) throws ServletException, IOException {
 		return PageUtils.hasElement(servletContext, request, response, page, News.class, true);
+	}
+
+	/**
+	 * The last modified time of news view is the pubDate of the most recent news entry.
+	 */
+	@Override
+	public ReadableInstant getLastModified(
+		ServletContext servletContext,
+		HttpServletRequest request,
+		HttpServletResponse response,
+		Page page
+	) throws ServletException, IOException {
+		List<News> news = NewsUtils.findAllNews(servletContext, request, response, page);
+		return news.isEmpty() ? null : news.get(0).getPubDate();
 	}
 
 	@Override
