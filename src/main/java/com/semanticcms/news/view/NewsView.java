@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2016  AO Industries, Inc.
+ * Copyright (C) 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,6 +27,7 @@ import com.aoindustries.servlet.http.LastModifiedServlet;
 import com.aoindustries.taglib.Link;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.servlet.PageUtils;
+import com.semanticcms.core.servlet.SemanticCMS;
 import com.semanticcms.core.servlet.View;
 import com.semanticcms.news.model.News;
 import com.semanticcms.news.servlet.NewsUtils;
@@ -96,7 +97,7 @@ public class NewsView extends View {
 		HttpServletResponse response,
 		Page page
 	) {
-		String bookTitle = page.getPageRef().getBook().getTitle();
+		String bookTitle = SemanticCMS.getInstance(servletContext).getBook(page.getPageRef().getBookRef()).getTitle();
 		if(bookTitle != null && !bookTitle.isEmpty()) {
 			return "What's New" + TITLE_SEPARATOR + page.getTitle() + TITLE_SEPARATOR + bookTitle;
 		} else {
