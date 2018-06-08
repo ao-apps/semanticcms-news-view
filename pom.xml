@@ -113,7 +113,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.9.9</version>
+			<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.10</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId><version>1.1.1</version>
