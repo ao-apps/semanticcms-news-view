@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016, 2017, 2018  AO Industries, Inc.
+Copyright (C) 2016, 2017, 2018, 2019  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -40,7 +40,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<description.html><![CDATA[<a target="_top" href="https://semanticcms.com/">SemanticCMS</a> view of all news in the current page and all children.]]></description.html>
 	</properties>
 
-	<name>SemanticCMS News View</name>
+	<name>SemanticCMS 2 News View</name>
 	<url>https://semanticcms.com/news/view/</url>
 	<description>SemanticCMS view of all news in the current page and all children.</description>
 	<inceptionYear>2016</inceptionYear>
