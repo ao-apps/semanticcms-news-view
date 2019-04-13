@@ -1,6 +1,6 @@
 <%--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016  AO Industries, Inc.
+Copyright (C) 2016, 2019  AO Industries, Inc.
 	support@aoindustries.com
 	7262 Bull Pen Cir
 	Mobile, AL 36695
@@ -73,7 +73,7 @@ Arguments:
 		</c:if>
 	>
 		<h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
-		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format value="${news.pubDate}" style="L-" /></time></footer>
+		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.request.locale}" value="${news.pubDate}" style="L-" /></time></footer>
 		<%-- both description and body, use details/summary - maybe do in future when has better browser support
 		<ao:choose>
 			<ao:when test="#{!empty news.description && news.body.length > 0}">
