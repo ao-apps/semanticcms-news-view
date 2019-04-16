@@ -40,7 +40,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<description.html><![CDATA[<a target="_top" href="https://semanticcms.com/">SemanticCMS</a> view of all news in the current page and all children.]]></description.html>
 	</properties>
 
-	<name>SemanticCMS 1 News View</name>
+	<name>SemanticCMS News View</name>
 	<url>https://semanticcms.com/news/view/</url>
 	<description>SemanticCMS view of all news in the current page and all children.</description>
 	<inceptionYear>2016</inceptionYear>

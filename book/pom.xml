@@ -37,7 +37,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<documented.groupId>com.semanticcms</documented.groupId><documented.artifactId>semanticcms-news-view</documented.artifactId>
 		<documented.javaVersion>1.7</documented.javaVersion>
 		<documented.javac.link.javaApi>${javac.link.javaApi.jdk7}</documented.javac.link.javaApi>
-		<documented.name>SemanticCMS 1 News View</documented.name>
+		<documented.name>SemanticCMS News View</documented.name>
 		<documented.shortTitle>View</documented.shortTitle>
 		<documented.url>https://semanticcms.com/news/view/</documented.url>
 		<documented.description>SemanticCMS view of all news in the current page and all children.</documented.description>
