@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2016, 2017  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -176,7 +176,7 @@ public class NewsView extends View {
 
 	@Override
 	public void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, Page page) throws ServletException, IOException, SkipPageException {
-		Map<String,Object> args = new LinkedHashMap<String,Object>();
+		Map<String,Object> args = new LinkedHashMap<>();
 		args.put("page", page);
 		boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
 		args.put("isRssEnabled", isRssEnabled);
