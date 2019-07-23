@@ -73,7 +73,7 @@ Arguments:
 		</c:if>
 	>
 		<h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
-		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.request.locale}" value="${news.pubDate}" style="L-" /></time></footer>
+		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.response.locale}" value="${news.pubDate}" style="L-" /></time></footer>
 		<%-- both description and body, use details/summary - maybe do in future when has better browser support
 		<ao:choose>
 			<ao:when test="#{!empty news.description && news.body.length > 0}">
