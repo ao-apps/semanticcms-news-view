@@ -133,7 +133,8 @@ public class NewsView extends View {
 			return Collections.singleton(
 				new Link(
 					RssUtils.getRssServletPath(page), // href
-					false, // hrefAbsolute
+					false, // absolute
+					false, // canonical
 					null, // params
 					LastModifiedServlet.AddLastModifiedWhen.FALSE,
 					null, // hreflang
