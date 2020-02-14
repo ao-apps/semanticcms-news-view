@@ -22,6 +22,7 @@
  */
 package com.semanticcms.news.view;
 
+import com.aoindustries.html.Html;
 import com.aoindustries.servlet.http.Dispatcher;
 import com.aoindustries.servlet.http.LastModifiedServlet;
 import com.aoindustries.taglib.Link;
@@ -176,7 +177,7 @@ public class NewsView extends View {
 	}
 
 	@Override
-	public void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, Page page) throws ServletException, IOException, SkipPageException {
+	public void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, Html html, Page page) throws ServletException, IOException, SkipPageException {
 		Map<String,Object> args = new LinkedHashMap<>();
 		args.put("page", page);
 		boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
