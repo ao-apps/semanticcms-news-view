@@ -24,7 +24,7 @@ package com.semanticcms.news.view;
 
 import com.aoindustries.html.Html;
 import com.aoindustries.servlet.http.Dispatcher;
-import com.aoindustries.servlet.http.LastModifiedServlet;
+import com.aoindustries.servlet.lastmodified.AddLastModified;
 import com.aoindustries.taglib.Link;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.servlet.PageUtils;
@@ -137,7 +137,7 @@ public class NewsView extends View {
 					false, // absolute
 					false, // canonical
 					null, // params
-					LastModifiedServlet.AddLastModifiedWhen.FALSE,
+					AddLastModified.FALSE,
 					(String)null, // hreflang
 					"alternate", // rel
 					RssUtils.CONTENT_TYPE,
