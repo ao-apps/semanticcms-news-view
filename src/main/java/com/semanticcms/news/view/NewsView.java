@@ -29,6 +29,7 @@ import com.aoindustries.taglib.Link;
 import com.semanticcms.core.controller.PageUtils;
 import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.Page;
+import com.semanticcms.core.renderer.html.HtmlRenderer;
 import com.semanticcms.core.renderer.html.View;
 import com.semanticcms.news.model.News;
 import com.semanticcms.news.servlet.NewsUtils;
@@ -40,7 +41,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
@@ -48,9 +52,23 @@ import org.joda.time.ReadableInstant;
 
 public class NewsView extends View {
 
-	public static final String VIEW_NAME = "news";
+	public static final String NAME = "news";
 
-	private static final String JSPX_TARGET = "/semanticcms-news-view/view.inc.jsp";
+	private static final String JSP_TARGET = "/semanticcms-news-view/view.inc.jsp";
+
+	@WebListener("Registers the \"" + NAME + "\" view in HtmlRenderer.")
+	public static class Initializer implements ServletContextListener {
+		@Override
+		public void contextInitialized(ServletContextEvent event) {
+			HtmlRenderer.getInstance(event.getServletContext()).addView(new NewsView());
+		}
+		@Override
+		public void contextDestroyed(ServletContextEvent event) {
+			// Do nothing
+		}
+	}
+
+	private NewsView() {}
 
 	@Override
 	public Group getGroup() {
@@ -64,7 +82,7 @@ public class NewsView extends View {
 
 	@Override
 	public String getName() {
-		return VIEW_NAME;
+		return NAME;
 	}
 
 	@Override
@@ -189,7 +207,7 @@ public class NewsView extends View {
 		}
 		Dispatcher.include(
 			servletContext,
-			JSPX_TARGET,
+			JSP_TARGET,
 			request,
 			response,
 			args
