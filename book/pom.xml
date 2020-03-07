@@ -35,8 +35,6 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 	<properties>
 		<!-- These values are copied from the project being documented -->
 		<documented.artifactId>semanticcms-news-view</documented.artifactId>
-		<documented.javaVersion>1.8</documented.javaVersion>
-		<documented.javac.link.javaApi>${javac.link.javaApi.jdk8}</documented.javac.link.javaApi>
 		<documented.name>SemanticCMS News View</documented.name>
 		<documented.shortTitle>View</documented.shortTitle>
 		<documented.description>SemanticCMS view of all news in the current page and all children.</documented.description>
