@@ -37,7 +37,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2016-10-31T01:02:31-0500"
-		dateModified="2020-03-07T06:01:29-0600"
+		dateModified="2020-03-15T00:27:10-05:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.semanticcms:semanticcms-news-view:pom.version}" />
@@ -62,6 +62,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 					<li>Updated for build compatibility with newer dependencies.</li>
 					<li>Using <ao:a href="https://aoindustries.com/ao-fluent-html/">AO Fluent HTML</ao:a> for HTML generation.</li>
 					<li>Optimized ServletContext attribute initialization and concurrency.</li>
+					<li>Updated dependencies.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
