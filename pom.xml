@@ -46,7 +46,6 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 	<inceptionYear>2016</inceptionYear>
 
 	<scm>
-		<!-- Can't inherit due to multi-module -->
 		<connection>scm:git:git://github.com/aoindustries/semanticcms-news-view.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/semanticcms-news-view.git</developerConnection>
 		<url>https://github.com/aoindustries/semanticcms-news-view</url>
