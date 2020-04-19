@@ -39,7 +39,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<documented.shortTitle>View</documented.shortTitle>
 		<documented.description>SemanticCMS view of all news in the current page and all children.</documented.description>
 
-		<description.html><![CDATA[Documentation for <a target="_top" href="${project.url}">${documented.name}</a> in <a target="_top" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
+		<description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
 	</properties>
 
 	<name>SemanticCMS News View² Book</name>
