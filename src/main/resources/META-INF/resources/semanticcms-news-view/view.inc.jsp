@@ -1,6 +1,6 @@
 <%--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016, 2019  AO Industries, Inc.
+Copyright (C) 2016, 2019, 2020  AO Industries, Inc.
 	support@aoindustries.com
 	7262 Bull Pen Cir
 	Mobile, AL 36695
@@ -89,6 +89,7 @@ Arguments:
 					<div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
 				</c:if>
 				<c:if test="${news.body.length > 0}">
+					<%-- TODO: How to write node body with relative links being relative to the page instead of this view? --%>
 					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
 				</c:if>
 		<%--

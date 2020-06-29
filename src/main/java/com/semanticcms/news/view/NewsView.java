@@ -204,6 +204,7 @@ public class NewsView extends View {
 			//args.put("rssTitle", getTitle(servletContext, request, response, page));
 			args.put("rssType", RssUtils.CONTENT_TYPE);
 		}
+		// TODO: Set a LinkRenderer to rewrite relative links (including anchor-only) to be relative to the page, not this view
 		Dispatcher.include(
 			servletContext,
 			JSP_TARGET,
