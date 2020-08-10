@@ -57,6 +57,25 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<url>https://github.com/aoindustries/semanticcms-news-view/issues</url>
 	</issueManagement>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<usedDependencies>
+						<!-- JSP Only -->
+						<dependency>joda-time:joda-time-jsptags</dependency>
+						<dependency>javax.servlet:jstl</dependency>
+						<dependency>com.semanticcms:semanticcms-core-taglib</dependency>
+						<dependency>com.semanticcms:semanticcms-news-taglib</dependency>
+						<!-- Runtime Direct -->
+						<dependency>org.glassfish.web:jstl-impl</dependency>
+					</usedDependencies>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<profiles>
 		<profile>
 			<id>offlineLinks</id><activation><file><exists>src/main/java</exists></file></activation>
@@ -97,6 +116,8 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/joda-time/joda-time</outputDirectory>
 										</artifactItem>
+										<!-- JSP Only: <groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId> -->
+										<!-- JSP Only: <groupId>javax.servlet</groupId><artifactId>jstl</artifactId> -->
 										<artifactItem>
 											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId>
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
@@ -112,6 +133,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-renderer-html</outputDirectory>
 										</artifactItem>
+										<!-- JSP Only: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId> -->
 										<artifactItem>
 											<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId>
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
@@ -122,6 +144,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 											<classifier>javadoc</classifier><includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-news-servlet</outputDirectory>
 										</artifactItem>
+										<!-- JSP Only: <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId> -->
 									</artifactItems>
 								</configuration>
 							</execution>
@@ -154,6 +177,8 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 									<url>https://www.joda.org/joda-time/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/joda-time/joda-time</location>
 								</offlineLink>
+								<!-- JSP Only: <groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId> -->
+								<!-- JSP Only: <groupId>javax.servlet</groupId><artifactId>jstl</artifactId> -->
 								<offlineLink>
 									<url>https://semanticcms.com/core/controller/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-controller</location>
@@ -166,6 +191,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 									<url>https://semanticcms.com/core/renderer/html/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-core-renderer-html</location>
 								</offlineLink>
+								<!-- JSP Only: <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId> -->
 								<offlineLink>
 									<url>https://semanticcms.com/news/model/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-news-model</location>
@@ -174,6 +200,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 									<url>https://semanticcms.com/news/servlet/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.semanticcms/semanticcms-news-servlet</location>
 								</offlineLink>
+								<!-- JSP Only: <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId> -->
 								<!-- Java SE -->
 								<offlineLink>
 									<url>${javadoc.link.javase}</url>
@@ -213,6 +240,10 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.10.6</version>
 			</dependency>
 			<dependency>
+				<groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId><version>1.1.1</version>
+			</dependency>
+			<!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>jstl</artifactId> -->
+			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
@@ -222,23 +253,19 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer-html</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
+				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+			</dependency>
+			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-servlet</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
-			<!-- Runtime Direct -->
-			<dependency>
-				<groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId><version>1.1.1</version>
-			</dependency>
-			<!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>jstl</artifactId> -->
-			<!-- javaee-web-api-bom: <groupId>org.glassfish.web</groupId><artifactId>jstl-impl</artifactId> -->
-			<dependency>
-				<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
-			</dependency>
 			<dependency>
 				<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId><version>2.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
+			<!-- Runtime Direct -->
+			<!-- javaee-web-api-bom: <groupId>org.glassfish.web</groupId><artifactId>jstl-impl</artifactId> -->
 			<!-- BOM -->
 			<dependency>
 				<groupId>com.aoindustries</groupId><artifactId>javaee-web-api-bom</artifactId><version>6.0.1${POST-SNAPSHOT}</version>
@@ -272,6 +299,12 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 			<groupId>joda-time</groupId><artifactId>joda-time</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId><artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-controller</artifactId>
 		</dependency>
 		<dependency>
@@ -281,30 +314,20 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-renderer-html</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-servlet</artifactId>
 		</dependency>
-		<!-- Runtime Direct -->
-		<dependency>
-			<groupId>joda-time</groupId><artifactId>joda-time-jsptags</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId><artifactId>jstl</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId><artifactId>jstl-impl</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-taglib</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 		<dependency>
 			<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId>
+		</dependency>
+		<!-- Runtime Direct -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId><artifactId>jstl-impl</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
