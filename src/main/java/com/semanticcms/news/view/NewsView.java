@@ -25,6 +25,7 @@ package com.semanticcms.news.view;
 import com.aoindustries.html.Html;
 import com.aoindustries.servlet.http.Dispatcher;
 import com.aoindustries.servlet.lastmodified.AddLastModified;
+import com.aoindustries.taglib.ImmutableGlobalAttributes;
 import com.aoindustries.taglib.Link;
 import com.semanticcms.core.controller.PageUtils;
 import com.semanticcms.core.controller.SemanticCMS;
@@ -152,6 +153,7 @@ public class NewsView extends View {
 		) {
 			return Collections.singleton(
 				new Link(
+					ImmutableGlobalAttributes.EMPTY,
 					RssUtils.getRssServletPath(page), // href
 					false, // absolute
 					false, // canonical
