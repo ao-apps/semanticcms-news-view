@@ -23,6 +23,7 @@
 package com.semanticcms.news.view;
 
 import com.aoindustries.html.FlowContent;
+import com.aoindustries.html.servlet.DocumentEE;
 import com.aoindustries.servlet.http.Dispatcher;
 import com.aoindustries.servlet.lastmodified.AddLastModified;
 import com.aoindustries.taglib.ImmutableGlobalAttributes;
@@ -196,8 +197,8 @@ public class NewsView extends View {
 	}
 
 	@Override
-	public <__ extends FlowContent<__>> void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, __ flow, Page page) throws ServletException, IOException, SkipPageException {
-		Map<String,Object> args = new LinkedHashMap<>();
+	public <__ extends FlowContent<DocumentEE, __>> void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, __ flow, Page page) throws ServletException, IOException, SkipPageException {
+		Map<String, Object> args = new LinkedHashMap<>();
 		args.put("page", page);
 		boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
 		args.put("isRssEnabled", isRssEnabled);
