@@ -29,7 +29,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<relativePath>../../parent/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-view</artifactId><version>1.4.1-SNAPSHOT</version>
+	<groupId>com.semanticcms</groupId><artifactId>semanticcms-news-view</artifactId><version>1.4.1</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -72,7 +72,7 @@ along with semanticcms-news-view.  If not, see <http://www.gnu.org/licenses />.
 		<connection>scm:git:git://github.com/aoindustries/semanticcms-news-view.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/semanticcms-news-view.git</developerConnection>
 		<url>https://github.com/aoindustries/semanticcms-news-view</url>
-		<tag>HEAD</tag>
+		<tag>semanticcms-news-view-1.4.1</tag>
 	</scm>
 
 	<issueManagement>
