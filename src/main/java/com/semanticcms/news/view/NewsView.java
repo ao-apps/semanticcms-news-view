@@ -22,11 +22,11 @@
  */
 package com.semanticcms.news.view;
 
-import com.aoindustries.html.servlet.FlowContent;
-import com.aoindustries.servlet.http.Dispatcher;
-import com.aoindustries.servlet.lastmodified.AddLastModified;
-import com.aoindustries.taglib.ImmutableGlobalAttributes;
-import com.aoindustries.taglib.Link;
+import com.aoapps.html.servlet.FlowContent;
+import com.aoapps.servlet.http.Dispatcher;
+import com.aoapps.servlet.lastmodified.AddLastModified;
+import com.aoapps.taglib.ImmutableGlobalAttributes;
+import com.aoapps.taglib.Link;
 import com.semanticcms.core.controller.PageUtils;
 import com.semanticcms.core.controller.SemanticCMS;
 import com.semanticcms.core.model.Page;
