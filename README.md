@@ -9,6 +9,7 @@
 [![license: LGPL v3](https://semanticcms.com/ao-badges/license-lgpl-3.0.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 [![Build](https://github.com/aoindustries/semanticcms-news-view/workflows/Build/badge.svg?branch=master)](https://github.com/aoindustries/semanticcms-news-view/actions?query=workflow%3ABuild)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.semanticcms/semanticcms-news-view/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.semanticcms/semanticcms-news-view)
 
 [SemanticCMS](https://github.com/aoindustries/semanticcms) view of all news in the current page and all children.
 
