@@ -51,7 +51,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 import org.joda.time.ReadableInstant;
 
-public class NewsView extends View {
+public final class NewsView extends View {
 
 	public static final String NAME = "news";
 
@@ -69,7 +69,9 @@ public class NewsView extends View {
 		}
 	}
 
-	private NewsView() {}
+	private NewsView() {
+		// Do nothing
+	}
 
 	@Override
 	public Group getGroup() {
