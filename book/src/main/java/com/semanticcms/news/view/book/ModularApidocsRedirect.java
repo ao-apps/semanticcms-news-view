@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2021  AO Industries, Inc.
+ * Copyright (C) 2021, 2022  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -20,6 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 package com.semanticcms.news.view.book;
 
 import com.aoapps.net.URIParametersUtils;
