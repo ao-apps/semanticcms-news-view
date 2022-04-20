@@ -1,9 +1,9 @@
 <%--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016, 2019, 2020, 2021  AO Industries, Inc.
-	support@aoindustries.com
-	7262 Bull Pen Cir
-	Mobile, AL 36695
+Copyright (C) 2016, 2019, 2020, 2021, 2022  AO Industries, Inc.
+    support@aoindustries.com
+    7262 Bull Pen Cir
+    Mobile, AL 36695
 
 This file is part of semanticcms-news-view.
 
@@ -32,73 +32,73 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
 <%--
 Only the parts of the page that are specifically on this page are indexed (hopefully):
 See googleon and googleoff tags:
-	https://perishablepress.com/tell-google-to-not-index-certain-parts-of-your-page/ 
+  https://perishablepress.com/tell-google-to-not-index-certain-parts-of-your-page/ 
 And the Google documentation:
-	https://www.google.com/support/enterprise/static/gsa/docs/admin/70/gsa_doc_set/admin_crawl/preparing.html#1076243
+  https://www.google.com/support/enterprise/static/gsa/docs/admin/70/gsa_doc_set/admin_crawl/preparing.html#1076243
 
 Arguments:
-	arg.view            The active view
-	arg.page            The page this is showing news for
-	arg.isRssEnabled    boolean whether RSS module enabled
-	arg.rssServletPath  The context-relative path to the RSS feed, only provided when RSS module enabled
-	arg.rssType         The content type of the RSS feed, only provided when RSS module enabled
+  arg.view            The active view
+  arg.page            The page this is showing news for
+  arg.isRssEnabled    boolean whether RSS module enabled
+  arg.rssServletPath  The context-relative path to the RSS feed, only provided when RSS module enabled
+  arg.rssType         The content type of the RSS feed, only provided when RSS module enabled
 --%>
 <c:set var="page" value="${arg.page}" />
 <c:set var="pageRef" value="${page.pageRef}" />
 
 <h1>What's New in <ao:out value="${page.title}" /></h1>
 <c:if test="${arg.isRssEnabled}">
-	<div class="semanticcms-news-view-rss-link">
-		<ao:a href="${arg.rssServletPath}" addLastModified="false" type="${arg.rssType}"><span>Subscribe</span></ao:a>
-	</div>
+  <div class="semanticcms-news-view-rss-link">
+    <ao:a href="${arg.rssServletPath}" addLastModified="false" type="${arg.rssType}"><span>Subscribe</span></ao:a>
+  </div>
 </c:if>
 <c:forEach var="news" items="${news:findAllNews(page)}">
-	<%-- Capture news now in "body" mode, since findAllNews only did meta for fast search --%>
-	<%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
-		 This recapturing is clunky and full body capture of all would be inefficient. --%>
-	<c:set var="news" value="${core:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
-	<c:if test="${!news.page.equals(page)}">
+  <%-- Capture news now in "body" mode, since findAllNews only did meta for fast search --%>
+  <%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
+     This recapturing is clunky and full body capture of all would be inefficient. --%>
+  <c:set var="news" value="${core:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
+  <c:if test="${!news.page.equals(page)}">
 <%-- Newline required before googleon, doing on googleoff just to be clear and safe --%>
 <!--googleoff: all-->
-	</c:if>
-	<%-- See http://stackoverflow.com/questions/16101472/attribute-pubdate-not-allowed-on-element-time-at-this-point --%>
-	<article
-		class="semanticcms-news-view-article"
-		itemscope="itemscope"
-		itemtype="http://schema.org/BlogPosting"
-		<%-- Include id for new elements on this page only, since only news on this page will be referenced externally and
-		     this assures ids are unique. --%>
-		<c:if test="${news.page.equals(page)}">
-			<%-- Tags-in-tag for conditional attribute: yeah JSP! --%>
-			id="${fn:escapeXml(news.id)}"
-		</c:if>
-	>
-		<h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
-		<footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.response.locale}" value="${news.pubDate}" style="L-" /></time></footer>
-		<%-- both description and body, use details/summary - maybe do in future when has better browser support
-		<ao:choose>
-			<ao:when test="#{!empty news.description && news.body.length > 0}">
-				<details>
-					<summary itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></summary>
-					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
-				</details>
-			</ao:when>
-			<ao:otherwise>
-		--%>
-				<c:if test="${!empty news.description}">
-					<div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
-				</c:if>
-				<c:if test="${news.body.length > 0}">
-					<%-- TODO: How to write node body with relative links being relative to the page instead of this view? --%>
-					<div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
-				</c:if>
-		<%--
-			</ao:otherwise>
-		</ao:choose>
-		--%>
-	</article>
-	<c:if test="${!news.page.equals(page)}">
+  </c:if>
+  <%-- See http://stackoverflow.com/questions/16101472/attribute-pubdate-not-allowed-on-element-time-at-this-point --%>
+  <article
+    class="semanticcms-news-view-article"
+    itemscope="itemscope"
+    itemtype="http://schema.org/BlogPosting"
+    <%-- Include id for new elements on this page only, since only news on this page will be referenced externally and
+         this assures ids are unique. --%>
+    <c:if test="${news.page.equals(page)}">
+      <%-- Tags-in-tag for conditional attribute: yeah JSP! --%>
+      id="${fn:escapeXml(news.id)}"
+    </c:if>
+  >
+    <h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
+    <footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.response.locale}" value="${news.pubDate}" style="L-" /></time></footer>
+    <%-- both description and body, use details/summary - maybe do in future when has better browser support
+    <ao:choose>
+      <ao:when test="#{!empty news.description && news.body.length > 0}">
+        <details>
+          <summary itemprop="description" class="semanticcms-news-view-description"><ao:out value="${news.description}" /></summary>
+          <div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
+        </details>
+      </ao:when>
+      <ao:otherwise>
+    --%>
+        <c:if test="${!empty news.description}">
+          <div itemprop="description" class="semanticcms-news-view-description"><em><ao:out value="${news.description}" /></em></div>
+        </c:if>
+        <c:if test="${news.body.length > 0}">
+          <%-- TODO: How to write node body with relative links being relative to the page instead of this view? --%>
+          <div itemprop="articleBody" class="semanticcms-news-view-body"><core:writeNodeBody node="#{news}" /></div>
+        </c:if>
+    <%--
+      </ao:otherwise>
+    </ao:choose>
+    --%>
+  </article>
+  <c:if test="${!news.page.equals(page)}">
 <%-- Newline required before googleon --%>
 <!--googleon: all-->
-	</c:if>
+  </c:if>
 </c:forEach>
