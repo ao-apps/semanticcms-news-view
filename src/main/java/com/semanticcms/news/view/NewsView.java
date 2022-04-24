@@ -63,6 +63,7 @@ public final class NewsView extends View {
     public void contextInitialized(ServletContextEvent event) {
       SemanticCMS.getInstance(event.getServletContext()).addView(new NewsView());
     }
+
     @Override
     public void contextDestroyed(ServletContextEvent event) {
       // Do nothing
@@ -90,10 +91,10 @@ public final class NewsView extends View {
 
   @Override
   public boolean isApplicable(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) throws ServletException, IOException {
     return PageUtils.hasElement(servletContext, request, response, page, News.class, true);
   }
@@ -103,10 +104,10 @@ public final class NewsView extends View {
    */
   @Override
   public ReadableInstant getLastModified(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) throws ServletException, IOException {
     List<News> news = NewsUtils.findAllNews(servletContext, request, response, page);
     return news.isEmpty() ? null : news.get(0).getPubDate();
@@ -114,10 +115,10 @@ public final class NewsView extends View {
 
   @Override
   public String getTitle(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) {
     String bookTitle = page.getPageRef().getBook().getTitle();
     if (bookTitle != null && !bookTitle.isEmpty()) {
@@ -142,31 +143,31 @@ public final class NewsView extends View {
 
   @Override
   public Collection<Link> getLinks(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) throws ServletException, IOException {
     if (
-      // RSS module must be loaded
-      RssUtils.isRssEnabled(servletContext)
-      // Only link to RSS when this view applies (has news on self or child page)
-      && isApplicable(servletContext, request, response, page)
+        // RSS module must be loaded
+        RssUtils.isRssEnabled(servletContext)
+            // Only link to RSS when this view applies (has news on self or child page)
+            && isApplicable(servletContext, request, response, page)
     ) {
       return Collections.singleton(
-        new Link(
-          ImmutableGlobalAttributes.EMPTY,
-          RssUtils.getRssServletPath(page), // href
-          false, // absolute
-          false, // canonical
-          null, // params
-          AddLastModified.FALSE,
-          (String)null, // hreflang
-          "alternate", // rel
-          RssUtils.CONTENT_TYPE,
-          null, // media
-          getTitle(servletContext, request, response, page)
-        )
+          new Link(
+              ImmutableGlobalAttributes.EMPTY,
+              RssUtils.getRssServletPath(page), // href
+              false, // absolute
+              false, // canonical
+              null, // params
+              AddLastModified.FALSE,
+              (String) null, // hreflang
+              "alternate", // rel
+              RssUtils.CONTENT_TYPE,
+              null, // media
+              getTitle(servletContext, request, response, page)
+          )
       );
     } else {
       return super.getLinks(servletContext, request, response, page);
@@ -185,16 +186,16 @@ public final class NewsView extends View {
    */
   @Override
   public boolean getAllowRobots(
-    ServletContext servletContext,
-    HttpServletRequest request,
-    HttpServletResponse response,
-    Page page
+      ServletContext servletContext,
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Page page
   ) throws ServletException, IOException {
     return
-      // If the page does not allow robots, this view will also not allow robots.
-      PageUtils.findAllowRobots(servletContext, request, response, page)
-      // If the page does not have any direct news (child news doesn't count), then robots will be excluded.
-      && PageUtils.hasElement(servletContext, request, response, page, News.class, false)
+        // If the page does not allow robots, this view will also not allow robots.
+        PageUtils.findAllowRobots(servletContext, request, response, page)
+            // If the page does not have any direct news (child news doesn't count), then robots will be excluded.
+            && PageUtils.hasElement(servletContext, request, response, page, News.class, false)
     ;
   }
 
@@ -211,11 +212,11 @@ public final class NewsView extends View {
     }
     // TODO: Set a LinkRenderer to rewrite relative links (including anchor-only) to be relative to the page, not this view
     Dispatcher.include(
-      servletContext,
-      JSP_TARGET,
-      request,
-      response,
-      args
+        servletContext,
+        JSP_TARGET,
+        request,
+        response,
+        args
     );
   }
 }
