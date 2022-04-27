@@ -38,4 +38,4 @@ module com.semanticcms.news.view {
   requires com.semanticcms.news.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-servlet</artifactId>
   requires com.semanticcms.news.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId>
   requires taglibs.standard.spec; // <groupId>org.apache.taglibs</groupId><artifactId>taglibs-standard-spec</artifactId>
-}
+} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
