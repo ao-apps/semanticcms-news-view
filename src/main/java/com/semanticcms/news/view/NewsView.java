@@ -51,12 +51,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
 import org.joda.time.ReadableInstant;
 
+/**
+ * SemanticCMS view of all news in the current page and all children.
+ */
 public final class NewsView extends View {
 
   public static final String NAME = "news";
 
   private static final String JSP_TARGET = "/semanticcms-news-view/view.inc.jsp";
 
+  /**
+   * Registers the "{@link #NAME}" view in {@link SemanticCMS}.
+   */
   @WebListener("Registers the \"" + NAME + "\" view in SemanticCMS.")
   public static class Initializer implements ServletContextListener {
     @Override
@@ -195,12 +201,12 @@ public final class NewsView extends View {
         // If the page does not allow robots, this view will also not allow robots.
         PageUtils.findAllowRobots(servletContext, request, response, page)
             // If the page does not have any direct news (child news doesn't count), then robots will be excluded.
-            && PageUtils.hasElement(servletContext, request, response, page, News.class, false)
-    ;
+            && PageUtils.hasElement(servletContext, request, response, page, News.class, false);
   }
 
   @Override
-  public <__ extends FlowContent<__>> void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, __ flow, Page page) throws ServletException, IOException, SkipPageException {
+  public <__ extends FlowContent<__>> void doView(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response, __ flow, Page page)
+      throws ServletException, IOException, SkipPageException {
     Map<String, Object> args = new LinkedHashMap<>();
     args.put("page", page);
     boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
