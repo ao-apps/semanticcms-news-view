@@ -46,7 +46,7 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
 
-  <name>SemanticCMS News View²</name>
+  <name>SemanticCMS News View</name>
   <url>https://semanticcms.com/news/view/</url>
   <description>SemanticCMS view of all news in the current page and all children.</description>
   <inceptionYear>2016</inceptionYear>
