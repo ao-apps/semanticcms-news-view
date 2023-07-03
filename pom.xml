@@ -165,6 +165,11 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
                       <outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-fluent-html-servlet</outputDirectory>
                     </artifactItem>
                     <artifactItem>
+                      <groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId><classifier>javadoc</classifier>
+                      <includes>element-list, package-list</includes>
+                      <outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-net-types</outputDirectory>
+                    </artifactItem>
+                    <artifactItem>
                       <groupId>com.aoapps</groupId><artifactId>ao-servlet-last-modified</artifactId><classifier>javadoc</classifier>
                       <includes>element-list, package-list</includes>
                       <outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-servlet-last-modified</outputDirectory>
@@ -223,6 +228,10 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
                 <offlineLink>
                   <url>https://oss.aoapps.com/fluent-html/servlet/apidocs/</url>
                   <location>${project.build.directory}/offlineLinks/com.aoapps/ao-fluent-html-servlet</location>
+                </offlineLink>
+                <offlineLink>
+                  <url>https://oss.aoapps.com/net-types/apidocs/</url>
+                  <location>${project.build.directory}/offlineLinks/com.aoapps/ao-net-types</location>
                 </offlineLink>
                 <offlineLink>
                   <url>https://oss.aoapps.com/servlet-last-modified/apidocs/</url>
@@ -316,6 +325,9 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-servlet</artifactId><version>0.7.0${POST-SNAPSHOT}</version>
       </dependency>
       <dependency>
+        <groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId><version>2.0.2${POST-SNAPSHOT}</version>
+      </dependency>
+      <dependency>
         <groupId>com.aoapps</groupId><artifactId>ao-servlet-last-modified</artifactId><version>2.0.1${POST-SNAPSHOT}</version>
       </dependency>
       <dependency>
@@ -383,9 +395,6 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
         <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId><version>5.3.0${POST-SNAPSHOT}</version>
       </dependency>
       <dependency>
-        <groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId><version>2.0.2${POST-SNAPSHOT}</version>
-      </dependency>
-      <dependency>
         <groupId>com.aoapps</groupId><artifactId>ao-servlet-filter</artifactId><version>3.0.3${POST-SNAPSHOT}</version>
       </dependency>
       <dependency>
@@ -431,6 +440,9 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Direct -->
     <dependency>
       <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-servlet</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId>
     </dependency>
     <dependency>
       <groupId>com.aoapps</groupId><artifactId>ao-servlet-last-modified</artifactId>
