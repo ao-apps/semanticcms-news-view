@@ -1,6 +1,6 @@
 <%--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016, 2019, 2020, 2021, 2022  AO Industries, Inc.
+Copyright (C) 2016, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -39,6 +39,7 @@ And the Google documentation:
 Arguments:
   arg.view            The active view
   arg.page            The page this is showing news for
+  arg.pageAllowRobots The resolved page allowRobots setting
   arg.isRssEnabled    boolean whether RSS module enabled
   arg.rssServletPath  The context-relative path to the RSS feed, only provided when RSS module enabled
   arg.rssType         The content type of the RSS feed, only provided when RSS module enabled
@@ -57,7 +58,8 @@ Arguments:
   <%-- TODO: body: Is there a way to capture news at "body" level while other parts at "meta" level?
      This recapturing is clunky and full body capture of all would be inefficient. --%>
   <c:set var="news" value="${core:capturePageInBook(news.page.pageRef.bookName, news.page.pageRef.path, 'body').elementsById[news.id]}" />
-  <c:if test="${!news.page.equals(page)}">
+  <c:set var="googleoff" value="${!news.page.equals(page) || !(news.allowRobots == null ? arg.pageAllowRobots : news.allowRobots)}" />
+  <c:if test="${googleoff}">
 <%-- Newline required before googleon, doing on googleoff just to be clear and safe --%>
 <!--googleoff: all-->
   </c:if>
@@ -97,7 +99,7 @@ Arguments:
     </ao:choose>
     --%>
   </article>
-  <c:if test="${!news.page.equals(page)}">
+  <c:if test="${googleoff}">
 <%-- Newline required before googleon --%>
 <!--googleon: all-->
   </c:if>
