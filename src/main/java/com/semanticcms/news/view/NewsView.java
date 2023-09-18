@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -184,10 +184,7 @@ public final class NewsView extends View {
   /**
    * News entries are not displayed on their page, but rather on their news view.
    * <p>
-   * If the page does not allow robots, this view will also not allow robots.
-   * </p>
-   * <p>
-   * If the page does not have any direct news (child news doesn't count), then robots will be excluded.
+   * If the page does not have any direct robots-enabled news (child news doesn't count), then robots will be excluded.
    * This is to reduce the chances of duplicate content when a parent page also includes child page news.
    * </p>
    */
@@ -198,11 +195,12 @@ public final class NewsView extends View {
       HttpServletResponse response,
       Page page
   ) throws ServletException, IOException {
-    return
-        // If the page does not allow robots, this view will also not allow robots.
-        PageUtils.findAllowRobots(servletContext, request, response, page)
-            // If the page does not have any direct news (child news doesn't count), then robots will be excluded.
-            && PageUtils.hasElement(servletContext, request, response, page, News.class, false);
+    boolean pageAllowRobots = PageUtils.findAllowRobots(servletContext, request, response, page);
+    // If the page does not have any direct robots-enabled news (child news doesn't count), then robots will be excluded.
+    return PageUtils.hasElement(servletContext, request, response, page, News.class, false, news -> {
+      Boolean newsAllowRobots = news.getAllowRobots();
+      return (newsAllowRobots == null) ? pageAllowRobots : newsAllowRobots;
+    });
   }
 
   @Override
@@ -210,6 +208,7 @@ public final class NewsView extends View {
       throws ServletException, IOException, SkipPageException {
     Map<String, Object> args = new LinkedHashMap<>();
     args.put("page", page);
+    args.put("pageAllowRobots", PageUtils.findAllowRobots(servletContext, request, response, page));
     boolean isRssEnabled = RssUtils.isRssEnabled(servletContext);
     args.put("isRssEnabled", isRssEnabled);
     if (isRssEnabled) {

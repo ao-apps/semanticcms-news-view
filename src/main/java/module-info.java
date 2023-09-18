@@ -24,6 +24,7 @@ module com.semanticcms.news.view {
   exports com.semanticcms.news.view;
   // Direct
   requires com.aoapps.html.servlet; // <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-servlet</artifactId>
+  requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
   requires com.aoapps.net.types; // <groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId>
   requires com.aoapps.servlet.lastmodified; // <groupId>com.aoapps</groupId><artifactId>ao-servlet-last-modified</artifactId>
   requires com.aoapps.servlet.util; // <groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId>
