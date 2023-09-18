@@ -67,7 +67,7 @@ Arguments:
   <article
     class="semanticcms-news-view-article"
     itemscope="itemscope"
-    itemtype="http://schema.org/BlogPosting"
+    itemtype="https://schema.org/BlogPosting"
     <%-- Include id for new elements on this page only, since only news on this page will be referenced externally and
          this assures ids are unique. --%>
     <c:if test="${news.page.equals(page)}">
