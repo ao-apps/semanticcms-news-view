@@ -172,7 +172,10 @@ public final class NewsView extends View {
               "alternate", // rel
               RssUtils.CONTENT_TYPE,
               null, // media
-              getTitle(servletContext, request, response, page)
+              getTitle(servletContext, request, response, page),
+              // Events
+              null, // onerror
+              null // onload
           )
       );
     } else {
