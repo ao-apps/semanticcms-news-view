@@ -169,7 +169,7 @@ public final class NewsView extends View {
               false, // canonical
               null, // params
               AddLastModified.FALSE,
-              (String) null, // hreflang
+              null, // hreflang
               "alternate", // rel
               RssUtils.CONTENT_TYPE,
               null, // media
