@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -163,6 +163,7 @@ public final class NewsView extends View {
       return Collections.singleton(
           new Link(
               ImmutableGlobalAttributes.EMPTY,
+              false, // noscript
               RssUtils.getRssServletPath(page), // href
               false, // absolute
               false, // canonical
