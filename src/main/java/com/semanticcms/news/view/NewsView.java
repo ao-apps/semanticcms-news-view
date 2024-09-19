@@ -25,7 +25,6 @@ package com.semanticcms.news.view;
 
 import com.aoapps.html.servlet.FlowContent;
 import com.aoapps.servlet.http.Dispatcher;
-import com.aoapps.servlet.lastmodified.AddLastModified;
 import com.aoapps.taglib.ImmutableGlobalAttributes;
 import com.aoapps.taglib.Link;
 import com.semanticcms.core.controller.PageUtils;
@@ -166,10 +165,6 @@ public final class NewsView extends View {
               ImmutableGlobalAttributes.EMPTY,
               false, // noscript
               RssUtils.getRssServletPath(page), // href
-              false, // absolute
-              false, // canonical
-              null, // params
-              AddLastModified.FALSE,
               null, // hreflang
               "alternate", // rel
               RssUtils.CONTENT_TYPE,
