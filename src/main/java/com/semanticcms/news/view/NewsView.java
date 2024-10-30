@@ -181,10 +181,9 @@ public final class NewsView extends View {
 
   /**
    * News entries are not displayed on their page, but rather on their news view.
-   * <p>
-   * If the page does not have any direct robots-enabled news (child news doesn't count), then robots will be excluded.
-   * This is to reduce the chances of duplicate content when a parent page also includes child page news.
-   * </p>
+   *
+   * <p>If the page does not have any direct robots-enabled news (child news doesn't count), then robots will be excluded.
+   * This is to reduce the chances of duplicate content when a parent page also includes child page news.</p>
    */
   @Override
   public boolean getAllowRobots(
