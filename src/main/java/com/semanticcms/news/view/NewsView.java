@@ -1,6 +1,6 @@
 /*
  * semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
- * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024  AO Industries, Inc.
+ * Copyright (C) 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -36,6 +36,7 @@ import com.semanticcms.news.model.News;
 import com.semanticcms.news.servlet.NewsUtils;
 import com.semanticcms.news.servlet.RssUtils;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -49,7 +50,6 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.SkipPageException;
-import org.joda.time.ReadableInstant;
 
 /**
  * SemanticCMS view of all news in the current page and all children.
@@ -109,7 +109,7 @@ public final class NewsView extends View {
    * The last modified time of news view is the pubDate of the most recent news entry.
    */
   @Override
-  public ReadableInstant getLastModified(
+  public ZonedDateTime getLastModified(
       ServletContext servletContext,
       HttpServletRequest request,
       HttpServletResponse response,
