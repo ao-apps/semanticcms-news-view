@@ -1,6 +1,6 @@
 <%--
 semanticcms-news-view - SemanticCMS view of all news in the current page and all children.
-Copyright (C) 2016, 2019, 2020, 2021, 2022, 2023  AO Industries, Inc.
+Copyright (C) 2016, 2019, 2020, 2021, 2022, 2023, 2025, 2026  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -23,10 +23,10 @@ along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page session="false" %>
 <%@ taglib prefix="ao" uri="https://oss.aoapps.com/taglib/" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="core" uri="https://semanticcms.com/core/taglib/" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="javatime" uri="http://sargue.net/jsptags/time" %>
 <%@ taglib prefix="news" uri="https://semanticcms.com/news/taglib/" %>
 
 <%--
@@ -76,7 +76,7 @@ Arguments:
     </c:if>
   >
     <h2 itemprop="headline"><core:link book="#{news.book}" page="#{news.targetPage}" element="#{news.element}" view="#{news.view}" allowGeneratedElement="true"><ao:out value="${news.title}" /></core:link></h2>
-    <footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><joda:format locale="${pageContext.response.locale}" value="${news.pubDate}" style="L-" /></time></footer>
+    <footer><time itemprop="datePublished" datetime="${fn:escapeXml(news.pubDate)}"><javatime:format locale="${pageContext.response.locale}" value="${news.pubDate}" style="L-" /></time></footer>
     <%-- both description and body, use details/summary - maybe do in future when has better browser support
     <ao:choose>
       <ao:when test="#{!empty news.description && news.body.length > 0}">
