@@ -61,7 +61,7 @@ public final class NewsView extends View {
   private static final String JSP_TARGET = "/semanticcms-news-view/view.inc.jsp";
 
   /**
-   * Registers the "{@link #NAME}" view in {@link HtmlRenderer}.
+   * Registers the "{@link NewsView#NAME}" view in {@link HtmlRenderer}.
    */
   @WebListener("Registers the \"" + NAME + "\" view in HtmlRenderer.")
   public static class Initializer implements ServletContextListener {
