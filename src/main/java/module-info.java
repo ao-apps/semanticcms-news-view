@@ -21,7 +21,6 @@
  * along with semanticcms-news-view.  If not, see <https://www.gnu.org/licenses/>.
  */
 module com.semanticcms.news.view {
-  exports com.semanticcms.news.view;
   // Direct
   requires com.aoapps.html.servlet; // <groupId>com.aoapps</groupId><artifactId>ao-fluent-html-servlet</artifactId>
   requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
@@ -37,4 +36,6 @@ module com.semanticcms.news.view {
   requires com.semanticcms.news.model; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-model</artifactId>
   requires com.semanticcms.news.servlet; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-servlet</artifactId>
   requires com.semanticcms.news.taglib; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-news-taglib</artifactId>
+
+  exports com.semanticcms.news.view;
 }
